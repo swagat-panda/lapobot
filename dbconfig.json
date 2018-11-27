@@ -1,0 +1,7 @@
+{"dbclient":{
+  "ip":"/* ip of mongodb */",
+  "port":/* port of mongodb */,
+  "dbname":"lapochat",
+  "dbconn":"lapo_conversation"
+ }
+}

@@ -1,0 +1,22 @@
+{"tokens":
+	{
+		"invalid":{
+			"token":["don't","donot","do not","not"]
+
+	},
+	 "message":{
+	 	"default":"sorry we don't deal with it",
+	 	"empty":"sorry!!! we don't have this in stock",
+	 	"false":"SORRY!! BUT WE ONLY DEAL WITH LAPTOP"
+
+	},
+		"priority":{
+			"invalidtoken":5
+		},
+		"flag":{
+			"invalidtoken":11
+		}
+
+
+}
+}

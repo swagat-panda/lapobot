@@ -1,0 +1,47 @@
+{"tokens":
+	{
+		"valid":{
+			"validtoken":["hi","hello","hii"],
+			"weltok":["laptop","lappy","computer"],
+			"value":["price","range","between","value","above","below","cost","less"],
+			"oppovalue":["above"],
+			"joiner":["and","or"],
+			"intro":["what","deal"],
+			"termination":["thanks"]
+		},
+		"messages":{
+			"welcome":"how can i help u",
+			"wellap":"what kind of laptop do u want?",
+			"thanksmsg":"THANKS FOR USING US HAVE A NICE DAY"
+		},
+		"priority":{
+			"validtoken":1,
+			"purpose":3,
+			"brandname":3,
+			"valuetoken":2,
+			"weltok":1,
+			"joiner":6,
+			"intro":1,
+			"modelname":4,
+			"pricenumber":3,
+			"termination":0
+
+
+		},
+		"flag":{
+			"validtoken":1,
+			"purpose":2,
+			"brandname":3,
+			"valuetoken":4,
+			"weltok":6,
+			"joiner":7,
+			"intro":10,
+			"modelname":8,
+			"pricenumber":5,
+			"termination":9
+
+		}
+
+	}
+}
+

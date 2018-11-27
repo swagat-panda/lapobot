@@ -1,0 +1,9 @@
+{"filelist":
+	{
+		"config_file":"lapoconfig.json",
+		"valid_tokens_file":"validtokens.json",
+		"invalid_tokens_file":"invalidtokens.json",
+		"database_config_file":"dbconfig.json"
+	}
+
+}

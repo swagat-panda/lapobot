@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>LAPOBOT</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+<style type="text/css">
+  body{
+
+background: #ddd;
+
+}
+
+a {
+			
+			text-decoration: none !important;
+			
+		}
+		
+		label {
+			
+			color: rgba(120, 144, 156,1.0) !important;
+			
+		}
+		
+		.btn:focus, .btn:active:focus, .btn.active:focus {
+			
+			outline: none !important;
+			box-shadow: 0 0px 0px rgba(120, 144, 156,1.0) inset, 0 0 0px rgba(120, 144, 156,0.8);
+}
+
+
+textarea:focus,
+		input[type="text"]:focus,
+		input[type="password"]:focus,
+		input[type="datetime"]:focus,
+		input[type="datetime-local"]:focus,
+		input[type="date"]:focus,
+		input[type="month"]:focus,
+		input[type="time"]:focus,
+		input[type="week"]:focus,
+		input[type="number"]:focus,
+		input[type="email"]:focus,
+		input[type="url"]:focus,
+		input[type="search"]:focus,
+		input[type="tel"]:focus,
+		input[type="color"]:focus,
+		.uneditable-input:focus {   
+		border-color: rgba(120, 144, 156,1.0); color: rgba(120, 144, 156,1.0); opacity: 0.9;
+		box-shadow: 0 0px 0px rgba(120, 144, 156,1.0) inset, 0 0 10px rgba(120, 144, 156,0.3);
+		outline: 0 none; }
+
+
+.card::-webkit-scrollbar {
+    width: 1px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 9px;
+	background: rgba(96, 125, 139,0.99);
+}
+
+.balon1, .balon2 {
+
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+
+	}
+
+
+.balon1 a {
+
+	background: #42a5f5;
+	color: #fff !important;
+	border-radius: 20px 20px 3px 20px;
+	display: block;
+	max-width: 75%;
+	padding: 7px 13px 7px 13px;
+
+	}
+
+.balon1:before {
+
+	content: attr(data-is);
+	position: absolute;
+	right: 15px;
+	bottom: -0.8em;
+	display: block;
+	font-size: .750rem;
+	color: rgba(84, 110, 122,1.0);
+	
+	}
+
+.balon2 a {
+
+	background: #f1f1f1;
+	color: #000 !important;
+	border-radius: 20px 20px 20px 3px;
+	display: block;
+	max-width: 75%;
+	padding: 7px 13px 7px 13px;
+	
+	}
+	
+.balon2:before {
+
+	content: attr(data-is);
+	position: absolute;
+	left: 13px;
+	bottom: -0.8em;
+	display: block;
+	font-size: .750rem;
+	color: rgba(84, 110, 122,1.0);
+  
+	}
+	
+.bg-sohbet:before {
+
+	content: "";
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAgOCkiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PGNpcmNsZSBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIgY3g9IjE3NiIgY3k9IjEyIiByPSI0Ii8+PHBhdGggZD0iTTIwLjUuNWwyMyAxMW0tMjkgODRsLTMuNzkgMTAuMzc3TTI3LjAzNyAxMzEuNGw1Ljg5OCAyLjIwMy0zLjQ2IDUuOTQ3IDYuMDcyIDIuMzkyLTMuOTMzIDUuNzU4bTEyOC43MzMgMzUuMzdsLjY5My05LjMxNiAxMC4yOTIuMDUyLjQxNi05LjIyMiA5LjI3NC4zMzJNLjUgNDguNXM2LjEzMSA2LjQxMyA2Ljg0NyAxNC44MDVjLjcxNSA4LjM5My0yLjUyIDE0LjgwNi0yLjUyIDE0LjgwNk0xMjQuNTU1IDkwcy03LjQ0NCAwLTEzLjY3IDYuMTkyYy02LjIyNyA2LjE5Mi00LjgzOCAxMi4wMTItNC44MzggMTIuMDEybTIuMjQgNjguNjI2cy00LjAyNi05LjAyNS0xOC4xNDUtOS4wMjUtMTguMTQ1IDUuNy0xOC4xNDUgNS43IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTg1LjcxNiAzNi4xNDZsNS4yNDMtOS41MjFoMTEuMDkzbDUuNDE2IDkuNTIxLTUuNDEgOS4xODVIOTAuOTUzbC01LjIzNy05LjE4NXptNjMuOTA5IDE1LjQ3OWgxMC43NXYxMC43NWgtMTAuNzV6IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIvPjxjaXJjbGUgZmlsbD0iIzAwMCIgY3g9IjcxLjUiIGN5PSI3LjUiIHI9IjEuNSIvPjxjaXJjbGUgZmlsbD0iIzAwMCIgY3g9IjE3MC41IiBjeT0iOTUuNSIgcj0iMS41Ii8+PGNpcmNsZSBmaWxsPSIjMDAwIiBjeD0iODEuNSIgY3k9IjEzNC41IiByPSIxLjUiLz48Y2lyY2xlIGZpbGw9IiMwMDAiIGN4PSIxMy41IiBjeT0iMjMuNSIgcj0iMS41Ii8+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTkzIDcxaDN2M2gtM3ptMzMgODRoM3YzaC0zem0tODUgMThoM3YzaC0zeiIvPjxwYXRoIGQ9Ik0zOS4zODQgNTEuMTIybDUuNzU4LTQuNDU0IDYuNDUzIDQuMjA1LTIuMjk0IDcuMzYzaC03Ljc5bC0yLjEyNy03LjExNHpNMTMwLjE5NSA0LjAzbDEzLjgzIDUuMDYyLTEwLjA5IDcuMDQ4LTMuNzQtMTIuMTF6bS04MyA5NWwxNC44MyA1LjQyOS0xMC44MiA3LjU1Ny00LjAxLTEyLjk4N3pNNS4yMTMgMTYxLjQ5NWwxMS4zMjggMjAuODk3TDIuMjY1IDE4MGwyLjk0OC0xOC41MDV6IiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4yNSIvPjxwYXRoIGQ9Ik0xNDkuMDUgMTI3LjQ2OHMtLjUxIDIuMTgzLjk5NSAzLjM2NmMxLjU2IDEuMjI2IDguNjQyLTEuODk1IDMuOTY3LTcuNzg1LTIuMzY3LTIuNDc3LTYuNS0zLjIyNi05LjMzIDAtNS4yMDggNS45MzYgMCAxNy41MSAxMS42MSAxMy43MyAxMi40NTgtNi4yNTcgNS42MzMtMjEuNjU2LTUuMDczLTIyLjY1NC02LjYwMi0uNjA2LTE0LjA0MyAxLjc1Ni0xNi4xNTcgMTAuMjY4LTEuNzE4IDYuOTIgMS41ODQgMTcuMzg3IDEyLjQ1IDIwLjQ3NiAxMC44NjYgMy4wOSAxOS4zMzEtNC4zMSAxOS4zMzEtNC4zMSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEuMjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48L3N2Zz4=');
+	opacity: 0.2;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	height:100%;
+	position: absolute;   
+
+	}
+
+#header-div
+{
+  	background: url('https://image.freepik.com/free-photo/robot-with-a-laptop-and-computer-mouse_1048-3560.jpg');
+  	width: 100%;
+    height: 20%;
+    background-repeat: repeat;
+    background-size: contain;
+    border: 1px solid red;
+	opacity: 0.9;
+}
+#footer-div
+{
+	background: url('http://www.hdnicewallpapers.com/Walls/Big/Computers/New_Alienware_Laptop_HD_Desktop_Background_Wallpaper.jpg');
+  	width: 100%;
+    height: 74%;
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    background-size: 100vw 74vh;
+    border: 1px solid red;
+
+}
+.micImage
+{
+     height: 35px;
+     width: 35px;
+}
+.enterImage{
+    height: 35px;
+    width: 35px;
+}
+
+</style>
+
+
+
+</head>
+<body>
+
+<div style="height: 100vh;">
+	<div class="container-fluid img-responsive" style="height: 20vh;" id="header-div">
+		<div style="height: 5vh"></div>
+		<div style="height: 10vh">
+			<marquee behavior="alternate" scrollamount="12"><p class="text-2" style="font-family: sans-serif; font-size: 6vmin;color: #36dc35" ><strong>LAPOBOT</strong> - Buying Laptops Can Be Easy Now</p></marquee>
+		</div>
+		<div style="height: 5vh"></div>
+	</div>
+	<div class="container-fluid bg-dark" style="height: 6vh">
+		<div style="height: 1vh"></div>
+		<button type="button" class="btn btn-info float-left" style="height: 4vmin; font-size: 2vmin">Home</button>
+		
+		<img class="rounded float-right" data-toggle="collapse" data-target="#demo" style="width: 4vw; height: 4vh; background: white" src="https://www.warehousestationery.co.nz/on/demandware.static/-/Library-Sites-wsl-shared-library/default/dwf5712f73/images/live-chat/chat-window-loading.gif"/>
+		<button type="button" class="btn btn-link float-right align-top" data-toggle="collapse" data-target="#demo" style="font-size: 2vmin; width: 4vmin font-style: italic; height: 4vmin" onclick="introSpeech()"><strong>CHAT WITH LAPOBOT</strong></button>
+		<div style="height: 1vh"></div>	
+	</div>
+  
+	<div class="container-fluid" style="height: 74vh;" id="footer-div">
+		<div class="collapse card float-right" style="min-width: 300px" id="demo">
+		  	<div class="col-12 p-0 m-0 position-absolute" style="right: 0px; min-width: 300px">
+				<div class="card border-0 rounded" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 6px 10px 0 rgba(0, 0, 0, 0.01); overflow: hidden; height: 9vh;">
+				  	<div class="card-header p-1 bg-light border border-top-0 border-left-0 border-right-0" style="color: rgba(96, 125, 139,1.0);">
+						<img class="rounded float-left" style="width: 50px; height: 50px;" src="https://www.zastavki.com/pictures/640x480/2014/Brands_Robot_with_a_laptop_HP_086291_29.jpg"/>
+						<h6 class="float-left" style="margin: 0px; margin-left: 10px;"> Lapobot</h6>
+						<button type="button" class="close" data-toggle="collapse" data-target="#demo">&times;</button>
+					</div>		
+				</div>
+				
+				<div class="card bg-sohbet border-0 m-0 p-0" style="height: 55vh;; min-height: 300px">
+				  	<div id="sohbet" class="card border-0 m-0 p-0 position-relative bg-transparent" style="overflow-y: auto; height: 100vh;">
+				  		<script type="text/javascript">
+				  			function get_time(flag1){
+								var now_date=new Date();
+								if(flag1 == 1)
+								{
+									var time_now=now_date.getHours()+":"+now_date.getMinutes();
+									return time_now;
+								}
+								else
+								{
+									if(now_date.getHours()<4)
+										return " Good Night ";
+									else if(now_date.getHours()<12)
+										return " Good Morning ";
+									else if(now_date.getHours()<18)
+										return " Good Afternoon ";
+									else if(now_date.getHours()<21)
+										return " Good Evening ";
+									else
+										return " Good Night ";
+								}
+							}
+				  			function helloText()
+							{
+								var botHtml1 = '<div class="balon2 p-2 m-0 position-relative" data-is="LAPOBOT - '+get_time(1)+'"><a class="float-left sohbet2">'+ "Hi! This is Lapobot.\n" +get_time(2)+'</a></div>';
+								$("#sohbet").append(botHtml1);
+								$('#sohbet').stop ().animate ({ scrollTop: $('#sohbet')[0].scrollHeight });
+								var botHtml1 = '<div class="balon2 p-2 m-0 position-relative" data-is="LAPOBOT - '+get_time(1)+'"><a class="float-left sohbet2"> <div class="row m-0 p-0"><div class="col-10 m-0 p-1"><input id="text1_name" class="mw-100 border rounded form-control" data-toggle="tooltip" data-placement="top" title="At-max 15 characters" type="text" name="text1_name" title="Name plz" placeholder="Name-15 letters" required></div><div class="col-2 m-0 p-1 text-center"><div class="btn-group btn-group-sm"><button type="button" class="btn btn-secondary enterImage" id="enter1_name"><i class="fa fa-paper-plane" aria-hidden="true" ></i></button></div></div></div></a></div>';
+								$("#sohbet").append(botHtml1);
+								$('#sohbet').stop ().animate ({ scrollTop: $('#sohbet')[0].scrollHeight });
+							}
+							helloText();
+							$(document).ready(function(){
+							    $('[data-toggle="tooltip"]').tooltip();   
+							});
+				  		</script>
+				  	</div>
+				</div>
+				<div class="w-100 card-footer p-0 bg-light border border-bottom-0 border-left-0 border-right-0">
+						<div class="row m-0 p-0">
+							<div class="col-8 m-0 p-1">	
+								<input id="text" class="mw-100 border rounded form-control" onclick="hideMic()" type="text" name="text" title="Type a message..." placeholder="Type a message..." required>
+							</div>
+							<div class="col-4 m-0 p-1 text-center">
+								<div class="btn-group btn-group-sm">
+									<button type="button" class="btn btn-primary enterImage" id="enter" style="display: none"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+									<button type="button" class="btn btn-primary micImage" id="mic" onclick="startDictation()" ><i class="fa fa-microphone" aria-hidden="true"></i></button>
+								</div>
+							</div>
+						</div>			
+				</div>
+			</div> 
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var global_name="";
+
+	function get_time(flag1){
+		var now_date=new Date();
+		if(flag1 == 1)
+		{
+			var time_now=now_date.getHours()+":"+now_date.getMinutes();
+			return time_now;
+		}
+		else if(flag1 == 3)
+		{
+			return now_date;
+		}
+		else
+		{
+			if(now_date.getHours()<4)
+				return " Good Night ";
+			else if(now_date.getHours()<12)
+				return " Good Morning ";
+			else if(now_date.getHours()<18)
+				return " Good Afternoon ";
+			else if(now_date.getHours()<21)
+				return " Good Evening ";
+			else
+				return " Good Night ";
+		}
+	}
+	function hideMic()
+	{
+		document.getElementById("enter").style.display="block";
+	}
+	function getBotResponse() {
+		var rawText = $("#text").val();
+		var name="";
+		if(global_name.localeCompare("")==0)
+		{
+			var userHtml1 = '<div class="balon1 p-2 m-0 position-relative" data-is="'+"USER - "+get_time(1)+'"><a class="float-right">'+ rawText +'</a></div>';
+			name="user";
+		}
+		else
+		{
+			var userHtml1 = '<div class="balon1 p-2 m-0 position-relative" data-is="'+global_name.toUpperCase()+' - '+get_time(1)+'"><a class="float-right">'+ rawText +'</a></div>';
+			name=global_name;
+		}
+         var jso={};
+         jso['bot']=rawText;
+         jso['name']=name;
+         jso['time']=get_time(3);
+          $("#sohbet").append(userHtml1);
+          $('#sohbet').stop ().animate ({ scrollTop: $('#sohbet')[0].scrollHeight });
+          if (rawText.toUpperCase() == "THANKS")
+              location.reload(true);
+          $.post("/post",jso,function(data) {
+            if (rawText.toUpperCase() == "THANKS")
+              location.reload(true);
+             $("#text").val("");
+              
+            responsiveVoice.speak(data['bot']);
+            var botHtml1 = '<div class="balon2 p-2 m-0 position-relative" data-is="LAPOBOT - '+get_time(1)+'"><a class="float-left sohbet2">'+ data['bot'] +'</a></div>';
+            $("#sohbet").append(botHtml1);
+            $('#sohbet').stop ().animate ({ scrollTop: $('#sohbet')[0].scrollHeight });
+          });
+        }
+        function startDictation() {
+        	responsiveVoice.cancel();
+        document.getElementById("enter").style.display="none";
+	    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+	      var recognition = new webkitSpeechRecognition();
+
+	      recognition.continuous = false;
+	      recognition.interimResults = false;
+
+	      recognition.lang = "en-US";
+	      recognition.start();
+
+	      recognition.onresult = function(e) {
+	      	document.getElementById('text').value
+                                 = e.results[0][0].transcript;
+	       	getBotResponse();
+	        recognition.stop();
+	        
+	      };
+
+	      recognition.onerror = function(e) {
+	      	$("#text").val(e.results[0][0].text);
+	        recognition.stop();
+	      }
+
+	    }
+	  }
+        function introSpeech(){
+        	responsivevoice.speak("Hi! This is Lapobot.");
+        }
+        function retrieve_name(){
+        	var nameText = $("#text1_name").val();
+        	if(nameText.length < 16){
+        	var botHtml2 = '<div class="balon2 p-2 m-0 position-relative" data-is="LAPOBOT - '+get_time(1)+'"><a class="float-left sohbet2">'+"Looking forward to help u "+nameText.toUpperCase()+" :) "+'</a></div>';
+            $("#sohbet").append(botHtml2);
+            $('#sohbet').stop ().animate ({ scrollTop: $('#sohbet')[0].scrollHeight });
+            document.getElementById("text1_name").readOnly = true;
+            document.getElementById("enter1_name").style.display="none";
+            global_name = nameText;
+            document.getElementById("text").focus();
+        }
+        else
+        {
+        	$("#text1_name").val("");
+        }
+        }
+        $("#text").keypress(function(e) {
+            if(e.which == 13) {
+            	getBotResponse();
+            }
+        });
+        $("#text1_name").keypress(function(e) {
+            if(e.which == 13) {
+                retrieve_name();
+            }
+        });
+        $("#enter1_name").click(function() {
+          retrieve_name();
+        });
+        $("#text").click(function() {
+          responsiveVoice.cancel();
+        });
+        $("#enter").click(function() {
+          getBotResponse();
+        });
+        $(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip();   
+		});     
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{"lapo":
+    {
+    "dell1001": {
+    "price":12000,
+    "date":"23/06/2018",
+    "brand":"dell",
+    "processor":"i3 4th gen",
+    "ram":"4GB",
+    "purpose":"student",
+    "rom":"1TB"
+    },
+    "hp2006":{
+        "price":36000,
+        "date":"5/10/2018",
+        "brand":"hp",
+        "processor":"i5 6th gen",
+        "purpose":"business",
+        "ram":"8GB",
+        "rom":"1TB"
+
+    },
+    "asus7001":{
+        "price":45000,
+        "date":"4/08/2017",
+        "brand":"asus",
+        "processor":"i7 6th gen",
+        "ram":"8GB",
+        "purpose":"professional",
+        "rom":"2TB"
+    },
+    "dell2001":{
+      "price":50000,
+      "date":"9/08/2018",
+      "brand":"dell",
+      "processor":"i5 7th gen",
+      "ram":"7GB",
+       "purpose":"student",
+      "rom":"1TB"
+
+    },
+     "apple2001":{
+      "price":67000,
+      "date":"9/08/2018",
+      "brand":"apple",
+      "processor":"i5 7th gen",
+      "ram":"7GB",
+       "purpose":"business",
+      "rom":"1TB"
+},
+"apple2301":{
+      "price":70000,
+      "date":"9/08/2018",
+      "brand":"apple",
+      "processor":"i5 7th gen",
+      "ram":"7GB",
+       "purpose":"business",
+      "rom":"1TB"
+}
+
+
+
+}
+}
